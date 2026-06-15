@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KAV AI Operations - Premium Experience</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* CSS VARIABLES FOR PREMIUM DARK THEME */
+        :root {
+            --bg-base: hsl(240, 16%, 5%);
+            --bg-card: hsl(240, 12%, 8%);
+            --bg-card-hover: hsl(240, 12%, 12%);
+            
+            --primary: hsl(263, 85%, 64%);
+            --primary-glow: hsla(263, 85%, 64%, 0.25);
+            --primary-hover: hsl(263, 85%, 72%);
+            
+            --accent: hsl(190, 95%, 50%);
+            --accent-glow: hsla(190, 95%, 50%, 0.25);
+            
+            --text-main: hsl(0, 0%, 98%);
+            --text-muted: hsl(240, 5%, 70%);
+            --text-dimmed: hsl(240, 5%, 50%);
+            
+            --border-color: hsl(240, 8%, 15%);
+            --border-hover: hsl(240, 8%, 22%);
+            
+            --font-sans: 'Plus Jakarta Sans', 'Sarabun', -apple-system, BlinkMacSystemFont, sans-serif;
+            --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* RESET & GENERAL STYLES */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-base);
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* SCROLLBAR CUSTOMIZATION */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-base);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 99px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--text-dimmed);
+        }
+
+        /* CONTAINER */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* PREMIUM GRADIENT TEXT */
+        .gradient-text {
+            background: linear-gradient(135deg, hsl(0, 0%, 100%) 20%, var(--primary) 60%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* HEADER & GLASSMORPHISM NAVBAR */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+            background: rgba(5, 5, 7, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            z-index: 1000;
+            transition: var(--transition-smooth);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            text-decoration: none;
+            color: var(--text-main);
+        }
+
+        .logo-dot {
+            width: 10px;
+            height: 10px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 50%;
+            box-shadow: 0 0 12px var(--primary-glow);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+            list-style: none;
+        }
+
+        .nav-link {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: var(--transition-smooth);
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition-smooth);
+        }
+
+        .nav-link:hover {
+            color: var(--text-main);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-btn {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            padding: 0.65rem 1.4rem;
+            border-radius: 99px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-decoration: none;
+            transition: var(--transition-smooth);
+        }
+
+        .nav-btn:hover {
+            background-color: var(--text-main);
+            color: var(--bg-base);
+            border-color: var(--text-main);
+            transform: translateY(-1px);
+        }
+
+        /* HERO SECTION */
+        .hero {
+            padding-top: 180px;
+            padding-bottom: 120px;
+            position: relative;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        /* Background Glow Orbs */
+        .glow-orb-1 {
+            position: absolute;
+            top: 20%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%);
+            filter: blur(80px);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .glow-orb-2 {
+            position: absolute;
+            bottom: -10%;
+            left: 20%;
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+            filter: blur(100px);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-color);
+            padding: 0.5rem 1.2rem;
+            border-radius: 99px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            letter-spacing: 0.5px;
+        }
+
+        .badge-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--accent);
+            animation: pulse 2s infinite;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4.25rem);
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -1.5px;
+            margin-bottom: 1.5rem;
+            max-width: 950px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 1.8vw, 1.2rem);
+            color: var(--text-muted);
+            max-width: 650px;
+            margin: 0 auto 3rem auto;
+            font-weight: 400;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1.2rem;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 0.9rem 2.2rem;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            transition: var(--transition-smooth);
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background-color: var(--text-main);
+            color: var(--bg-base);
+            border: none;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(255, 255, 255, 0.15);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--border-hover);
+            background: rgba(255, 255, 255, 0.02);
+            transform: translateY(-2px);
+        }
+
+        /* FEATURES SECTION */
+        .features {
+            padding: 100px 0;
+            border-top: 1px solid var(--border-color);
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .section-header h2 {
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 0.8rem;
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at top left, rgba(263, 85, 64, 0.05), transparent 60%);
+            opacity: 0;
+            transition: var(--transition-smooth);
+            pointer-events: none;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            border-color: var(--border-hover);
+            background-color: var(--bg-card-hover);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card-icon {
+            width: 52px;
+            height: 52px;
+            background: rgba(263, 85, 64, 0.08);
+            border: 1px solid rgba(263, 85, 64, 0.15);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
+            color: var(--primary);
+            transition: var(--transition-smooth);
+        }
+
+        .card:hover .card-icon {
+            color: var(--accent);
+            background: rgba(190, 95, 50, 0.08);
+            border-color: rgba(190, 95, 50, 0.15);
+        }
+
+        .card h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: -0.3px;
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* CALL TO ACTION SECTION */
+        .cta {
+            padding: 80px 0 120px 0;
+            position: relative;
+        }
+
+        .cta-container {
+            background: linear-gradient(135deg, var(--bg-card) 0%, hsl(240, 10%, 6%) 100%);
+            border: 1px solid var(--border-color);
+            border-radius: 32px;
+            padding: 5rem 3rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-container::before {
+            content: '';
+            position: absolute;
+            bottom: -50px;
+            right: -50px;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+            filter: blur(80px);
+            pointer-events: none;
+        }
+
+        .cta h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            letter-spacing: -1.5px;
+            margin-bottom: 1.2rem;
+        }
+
+        .cta p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 550px;
+            margin: 0 auto 2.5rem auto;
+        }
+
+        /* FOOTER */
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding: 4rem 0;
+            text-align: center;
+            background-color: hsl(240, 16%, 3%);
+            color: var(--text-dimmed);
+            font-size: 0.9rem;
+        }
+
+        .footer-logo {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .footer-links a {
+            color: var(--text-dimmed);
+            text-decoration: none;
+            transition: var(--transition-smooth);
+        }
+
+        .footer-links a:hover {
+            color: var(--text-main);
+        }
+
+        .copyright-text {
+            border-top: 1px solid rgba(255, 255, 255, 0.02);
+            padding-top: 2rem;
+            margin-top: 2rem;
+        }
+
+        /* PULSE ANIMATION */
+        @keyframes pulse {
+            0% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(190, 95, 50, 0.5);
+            }
+            70% {
+                transform: scale(1);
+                box-shadow: 0 0 0 10px rgba(190, 95, 50, 0);
+            }
+            100% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(190, 95, 50, 0);
+            }
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 768px) {
+            .nav-links, .nav-btn {
+                display: none; /* Mobile menu collapsed for clean layout */
+            }
+
+            .hero {
+                padding-top: 150px;
+                padding-bottom: 80px;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+                width: 100%;
+                max-width: 320px;
+                margin: 0 auto;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .cta-container {
+                padding: 4rem 1.5rem;
+                border-radius: 24px;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- STICKY HEADER & NAVBAR -->
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <div class="logo-dot"></div>
+                KAV OPERATIONS
+            </a>
+            <ul class="nav-links">
+                <li><a href="#features" class="nav-link">ฟีเจอร์</a></li>
+                <li><a href="#about" class="nav-link">เกี่ยวกับเรา</a></li>
+                <li><a href="#contact" class="nav-link">ติดต่อสอบถาม</a></li>
+            </ul>
+            <a href="#contact" class="nav-btn">จองสิทธิ์ล่วงหน้า</a>
+        </div>
+    </header>
+
+    <!-- HERO SECTION WITH PREMIUM GLOWS -->
+    <section class="hero">
+        <div class="glow-orb-1"></div>
+        <div class="glow-orb-2"></div>
+        <div class="container">
+            <div class="badge">
+                <div class="badge-dot"></div>
+                <span>สัมผัสประสบการณ์ความเร็วระดับ 10 Gbps</span>
+            </div>
+            <h1>ขับเคลื่อนไอเดียสู่อนาคต <br><span class="gradient-text">ด้วยสถาปัตยกรรมระดับพรีเมียม</span></h1>
+            <p>ยกระดับระบบปฏิบัติการและการพัฒนาโครงสร้างพื้นฐานดิจิทัลของคุณด้วยเทคโนโลยีที่เสถียร รวดเร็ว และออกแบบมาอย่างประณีตที่สุดสำหรับผู้นำธุรกิจยุคใหม่</p>
+            <div class="hero-actions">
+                <a href="#contact" class="btn btn-primary">
+                    เริ่มต้นสร้างระบบฟรี
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </a>
+                <a href="#features" class="btn btn-secondary">เรียนรู้รายละเอียด</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRO FEATURES GRID SECTION -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>คุณสมบัติระดับสูงเพื่อคุณ</h2>
+                <p>ถูกคิดค้นและพัฒนาอย่างไร้ขีดจำกัดเพื่อความลื่นไหลในทุกวินาทีการทำงาน</p>
+            </div>
+            
+            <div class="grid">
+                <!-- Card 1: Performance -->
+                <div class="card">
+                    <div class="card-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                    </div>
+                    <h3>ความเร็วเต็มกำลังขับ</h3>
+                    <p>สถาปัตยกรรมโค้ดที่ผ่านการ Optimize ถึงขั้นสุด มอบอัตราการโหลดที่รวดเร็วและประสิทธิภาพการตอบสนองทันท่วงทีไม่มีสะดุด</p>
+                </div>
+
+                <!-- Card 2: Security -->
+                <div class="card">
+                    <div class="card-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                    </div>
+                    <h3>ความปลอดภัยระดับองค์กร</h3>
+                    <p>ระบบรักษาความปลอดภัยแบบรอบด้าน เข้ารหัสข้อมูลสำคัญทุกชุดอย่างรัดกุมด้วยระบบมาตรฐานสากลเพื่อการปกป้องไร้ช่องโหว่</p>
+                </div>
+
+                <!-- Card 3: Customization -->
+                <div class="card">
+                    <div class="card-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"></path><path d="M12 16V12"></path><path d="M12 8h.01"></path></svg>
+                    </div>
+                    <h3>ปรับแต่งได้ลึกที่สุด</h3>
+                    <p>ระบบการตั้งค่าและโครงสร้างที่มีความยืดหยุ่นสูง เปิดโอกาสให้ปรับดีไซน์และระบบภายในตามเอกลักษณ์ทางธุรกิจของคุณได้อย่างสมบูรณ์</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CALL TO ACTION AREA -->
+    <section id="contact" class="container cta">
+        <div class="cta-container">
+            <h2 class="gradient-text">ก้าวสู่อนาคตที่เหนือระดับกว่าใคร</h2>
+            <p>สัมผัสพลังการพัฒนาและการออกแบบเครื่องมือระดับพรีเมียม เพื่อตอบรับกับเป้าหมายระดับสูงสุดในธุรกิจของคุณ</p>
+            <a href="#" class="btn btn-primary">เริ่มต้นใช้งานแบบฟรีพรีเมียม</a>
+        </div>
+    </section>
+
+    <!-- PREMIUM FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-logo">
+                <div class="logo-dot"></div>
+                KAV OPERATIONS
+            </div>
+            <ul class="footer-links">
+                <li><a href="#features">ฟีเจอร์</a></li>
+                <li><a href="#about">เกี่ยวกับเรา</a></li>
+                <li><a href="#contact">ติดต่อเรา</a></li>
+            </ul>
+            <p class="copyright-text">&copy; 2026 KAV AI Operations. All rights reserved.</p>
+            <p style="margin-top: 0.5rem; font-size: 0.8rem; color: var(--text-dimmed);">Crafted with luxury design parameters exclusively for คุณ Nut</p>
+        </div>
+    </footer>
+
+</body>
+</html>
