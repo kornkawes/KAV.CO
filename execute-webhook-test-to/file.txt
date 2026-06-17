@@ -1,0 +1,9 @@
+{
+  "integrationId": "WEBHOOK-TEST-001",
+  "payload": {
+    "status": "success",
+    "message": "Hello คุณ Nut, Webhook test executed successfully",
+    "timestamp": "2026-06-18T03:35:00Z",
+    "target": "webhook.site/test-endpoint"
+  }
+}
