@@ -1,0 +1,6 @@
+{
+  "integrationId": "INT-TEST",
+  "payload": {
+    "message": "codex-agent-test"
+  }
+}
