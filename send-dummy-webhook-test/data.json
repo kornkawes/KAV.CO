@@ -1,0 +1,12 @@
+{
+  "test_metadata": {
+    "task_id": "C-20260618031600_T-1",
+    "initiated_by": "Sage (Automation Engineer)",
+    "environment": "KAV-Production-Test"
+  },
+  "payload": {
+    "message": "Webhook functional test connection",
+    "timestamp": "2026-06-18T03:18:53+07:00",
+    "status": "active"
+  }
+}
