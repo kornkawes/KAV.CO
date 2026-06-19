@@ -1,0 +1,9 @@
+{
+  "integrationId": "INT-WEBHOOK-VERIFY",
+  "payload": {
+    "target": "https://httpbin.org/post",
+    "task_id": "C-20260618031600_T-1",
+    "timestamp": "2026-06-18T03:18:53Z",
+    "message": "Actual execution for Cara's verification"
+  }
+}
